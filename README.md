@@ -1,81 +1,58 @@
-# ESP32_NOW
+# ESP32_NOW**项目文档**
 
-## 1. 项目简介
+## **1. 项目简介**
 
-ESP-NOW 是由乐鑫（Espressif）开发的一种轻量级的无线通信协议，主要用于多设备之间的短距离通信。相比于传统的 Wi-Fi 协议，ESP-NOW 不需要建立连接即可发送数据，且具有**低延迟**和**低功耗**的优势。它广泛应用于物联网设备、智能家居、环境监控等需要快速响应的场景。
+ESP-NOW 是乐鑫开发的一种低功耗、低延迟的无线通信协议，允许设备之间在没有 Wi-Fi 网络的情况下进行快速的数据传输。它适用于智能家居、物联网等场景。
 
-## 2. 功能概述
+## **2. 功能概述**
 
-- **点对点通信**：支持多个设备之间建立点对点数据传输。
-- **广播模式**：允许将同一条消息广播给多个设备。
-- **实时响应**：低延迟的数据传输，非常适用于需要快速通信的场景。
-- **离线操作**：设备间通信无需依赖 Wi-Fi 网络。
+- **点对点和广播通信**：设备可以进行单对单或一对多通信。
+- **低延迟、低功耗**：非常适合需要快速响应的应用。
+- **无连接传输**：无需 Wi-Fi 连接即可发送数据。
 
-## 3. 使用场景
+## **3. 使用场景**
 
-- **智能家居**：用于传感器之间的通信，例如门窗状态监控。
-- **环境监控**：在无需 Wi-Fi 覆盖的区域，通过多设备采集环境数据。
-- **工业物联网**：设备之间短距离、高速数据交换，提高监控效率。
+- **智能家居**：门窗传感器等设备的实时监控。
+- **环境监控**：无需网络覆盖的区域数据采集。
+- **工业物联网**：短距离设备间的数据传输。
 
-## 4. 使用步骤
+## **4. 使用方法**
 
-**4.1 准备工作**：
+1. **准备环境**：确保安装了 ESP-IDF 和 Python 依赖。
+2. **克隆项目**：
+    
+    ```bash
+    
+    git clone https://github.com/huang20030517/ESP32_NOW.git
+    cd ESP32_NOW
+    
+    ```
+    
+3. **编译与烧录**：
+    
+    ```bash
+    
+    idf.py set-target esp32s3
+    idf.py build
+    idf.py -p COMX flash  # 替换 COMX 为实际串口号
+    
+    ```
+    
+4. **查看设备日志**：
+    
+    ```bash
+    
+    idf.py monitor
+    
+    ```
+    
 
-- 安装 **ESP-IDF**（Espressif IoT Development Framework）。
-- 准备至少两个 ESP32 设备进行测试。
+## **5. 常见问题**
 
-**4.2 克隆项目**：
+- **esp_event.h 文件丢失**：检查是否正确安装 ESP-IDF。
+- **设备无法通信**：确认 MAC 地址正确，且已经添加对等设备。
 
-```bash
-git clone https://github.com/huang20030517/ESP32_NOW.git
-cd ESP32_NOW
-```
+## **6. 项目链接与参考**
 
-**4.3 安装依赖**：
-
-确保已正确安装 ESP-IDF，并使用以下命令安装 Python 依赖：
-
-```bash
-python -m pip install -r %IDF_PATH%/requirements.txt
-```
-
-**4.4 编译和烧录**：
-
-将设备连接至电脑，运行以下命令进行编译并烧录：
-
-```bash
-idf.py set-target esp32s3
-idf.py build
-idf.py -p COMX flash  # 替换 COMX 为实际串口号
-```
-
-**4.5 运行与监控**：
-
-运行以下命令查看设备的日志输出：
-
-```bash
-idf.py monitor
-```
-
-## 5. 常见问题与解决
-
-**5.1 无法找到 esp_event.h 文件**：
-
-- 检查 ESP-IDF 是否正确安装，并确保路径变量 **IDF_PATH** 设置正确。
-
-**5.2 设备无法发送或接收消息**：
-
-- 确认两个设备的 MAC 地址正确无误，并且已经使用 `esp_now_add_peer` 添加对等设备。
-
-**5.3 编译失败，提示 build.ninja 错误**：
-
-- 运行以下命令重新配置项目：
-
-```bash
-idf.py reconfigure
-```
-
-## 6. 项目链接与参考
-
-- [ESP-NOW 使用指南（Random Nerd Tutorials）](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/)
+- [ESP-NOW 使用指南](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/)
 - [ESP-IDF 官方文档](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/)
