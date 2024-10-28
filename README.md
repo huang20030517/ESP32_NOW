@@ -27,7 +27,7 @@ ESP-NOW 是由乐鑫（Espressif）开发的一种轻量级的无线通信协议
 **4.2 克隆项目**：
 
 ```bash
-git clone <https://github.com/huang20030517/ESP32_NOW.git>
+git clone https://github.com/huang20030517/ESP32_NOW.git
 cd ESP32_NOW
 ```
 
